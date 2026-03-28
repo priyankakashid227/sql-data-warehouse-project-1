@@ -12,6 +12,7 @@ WARNING:
       ALL data in the database will be permanetly deleted.Processed with cauution
       and ensure you have proper backups before running this script.
 */
+
 USE master;
 GO
 
