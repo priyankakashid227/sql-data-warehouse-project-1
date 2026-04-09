@@ -26,21 +26,21 @@ It consists of **dimension tables** and **fact tables** for specific business me
 
 ## 2. `gold.dim_products`
 
-**Purpose:** Store product details enriched with category and business info
+**Purpose:** Provide information about the products and their attributes
 
-| Column Name       | Data Type       | Description |
-|------------------|----------------|-------------|
-| prd_key           | INT            | Surrogate product key uniquely identifying each product record in the dimension table. |
-| product_id        | INT            | Original product ID from source system. |
-| product_number    | VARCHAR(50)    | Product code or number used for tracking and reference. |
-| product_name      | VARCHAR(100)   | Name of the product. |
-| category_id       | INT            | Original category ID from source system. |
-| category          | VARCHAR(50)    | Name of the product category. |
-| subcategory       | VARCHAR(50)    | Name of the sub-category under the main category. |
-| maintenance       | VARCHAR(50)    | Maintenance information associated with the product. |
-| cost              | DECIMAL(18,2)  | Cost of the product. |
-| product_line      | VARCHAR(50)    | Product line or group to which the product belongs. |
-| start_date        | DATE           | Product start date or the date it became available in the system. |
+| Column Name           | Data Type       | Description |
+|----------------------|----------------|-------------|
+| products_key          | INT            | Surrogate key uniquely identifying each product record in the products dimension table. |
+| products_id           | INT            | A unique identifier assigned to the product for internal tracking and referencing. |
+| product_number        | VARCHAR(50)    | A structured alphanumeric code representing the product, often used for categorization or inventory. |
+| product_name          | VARCHAR(50)    | Descriptive name of the product, including key details such as type, color, and size. |
+| category_id           | VARCHAR(50)    | A unique identifier for the product's category linking to its high-level classification. |
+| category              | VARCHAR(50)    | The broader classification of the product (e.g., Bike, Components) to group related items. |
+| subcategory           | VARCHAR(50)    | A more detailed classification of the products within the category. |
+| maintenance_required  | VARCHAR(50)    | Indicates whether the product requires maintenance (e.g., Yes, No). |
+| cost                  | INT            | The cost or base price of the product. |
+| product_line          | VARCHAR(50)    | The specific product line or series to which the product belongs (e.g., Road, Mountain). |
+| start_date            | DATE           | The date when the product becomes available for sale or use, as recorded in the system. |
 
 ---
 
@@ -50,7 +50,7 @@ It consists of **dimension tables** and **fact tables** for specific business me
 
 | Column Name       | Data Type       | Description |
 |------------------|----------------|-------------|
-| order_number      | INT            | Sales order number. |
+| order_number      | VARCHAR(50)    | Sales order number. |
 | product_key       | INT            | Surrogate product key referencing `dim_products`. |
 | customer_key      | INT            | Surrogate customer key referencing `dim_customers`. |
 | order_date        | DATE           | Date when the order was placed. |
@@ -62,8 +62,28 @@ It consists of **dimension tables** and **fact tables** for specific business me
 
 ---
 
+## 4. `gold.fact_sales`
+
+**Purpose:** Stores transactional sales data for analytical purposes
+
+| Column Name       | Data Type       | Description |
+|------------------|----------------|-------------|
+| order_number      | VARCHAR(50)    | A unique alphanumeric identifier for each sales order (e.g., 'S054496'). |
+| products_key      | INT            | Surrogate key linking the order to the `dim_products` dimension table. |
+| customer_key      | INT            | Surrogate key linking the order to the `dim_customers` dimension table. |
+| order_date        | DATE           | The date when the order was placed. |
+| shipping_date     | DATE           | The date when the order was shipped. |
+| due_date          | DATE           | The date when the payment for the order was due. |
+| sales_amount      | INT            | The total monetary value of the sales for the line item, in whole currency units (e.g., 25). |
+| quantity          | INT            | The number of units of the product ordered for the line item (e.g., 1). |
+| price             | INT            | The price per unit of the product for the line item, in whole currency units (e.g., 25). |
+
+---
+
 **Notes:**  
-- Surrogate keys (`customer_key`, `prd_key`) are generated for analytical purposes.  
+- Surrogate keys (`customer_key`, `products_key`) are generated for analytical purposes.  
 - Gold layer tables are **ready for reporting and BI use cases**.  
-- Fact table `dact_sales` links all transactions with corresponding dimension tables for analytics.  
+- Fact tables (`dact_sales` and `fact_sales`) link all transactions with corresponding dimension tables for analytics.  
 - All columns have descriptive names and data types aligned for business understanding.
+
+
