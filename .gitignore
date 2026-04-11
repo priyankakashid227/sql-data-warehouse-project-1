@@ -1,0 +1,22 @@
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# SQL Server backup files
+*.bak
+*.trn
+
+# Logs & temp
+*.log
+*.tmp
+
+# IDE files
+.vscode/
+.idea/
+
+# Environment files
+.env
+
+# Large datasets (optional)
+datasets/*.csv
