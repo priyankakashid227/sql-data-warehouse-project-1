@@ -110,19 +110,17 @@ This project is licensed under the [MIT License](LICENSE). You are free to use, 
 
 ## 🌟 About Me
 
-Hi there! I'm Priyanka Kashid 👋
+Hi there! I'm **Priyanka Kashid** 👋  
 I am a Computer Science graduate and an aspiring Data Analyst / Data Scientist.
 
 I have hands-on experience in:
-
-SQL (Data Warehousing, ETL, Analytics)
-Python (Learning phase 🚀)
-Data Analysis & Visualization
+- SQL (Data Warehousing, ETL, Analytics)
+- Python
+- Data Analysis & Visualization
 
 This project reflects my practical understanding of:
+- Building Data Warehouse (Bronze, Silver, Gold layers)
+- Data Cleaning & Transformation
+- Analytical SQL Queries & Reporting
 
-Building Data Warehouse (Bronze, Silver, Gold layers)
-Data Cleaning & Transformation
-Analytical SQL Queries & Reporting
-
-I am passionate about working with data and continuously improving my skills to build real-world data solutions.
+I am passionate about working with data and building real-world data solutions that drive insights and decision-making.
